@@ -1,0 +1,16 @@
+{
+  "name": "flaky-playwright-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Three classic flaky Playwright patterns, how to reproduce them, and how to fix them.",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test --project=fixed",
+    "test:fixed:stress": "playwright test --project=fixed --repeat-each=20 --workers=8",
+    "test:flaky": "playwright test --project=flaky",
+    "test:flaky:stress": "playwright test --project=flaky --repeat-each=20 --workers=8"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0"
+  }
+}

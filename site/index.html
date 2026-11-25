@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Lab Shop</title></head>
+<body>
+  <h1>Lab Shop</h1>
+  <div id="price">loading…</div>
+  <ul id="items"></ul>
+  <button id="buy" hidden>Buy</button>
+  <script>
+    // Simulated backend latency: most responses are fast, about 1 in 10 is slow.
+    // That is what a shared CI runner, a cold cache or a busy test database looks like.
+    const latency = Math.random() < 0.1 ? 400 : 40;
+    new Promise(resolve => setTimeout(resolve, latency))
+      .then(() => fetch('/api.json'))
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('price').textContent = d.price;
+        const ul = document.getElementById('items');
+        d.items.forEach(name => { const li = document.createElement('li'); li.className = 'item'; li.textContent = name; ul.appendChild(li); });
+        document.getElementById('buy').hidden = false;
+      });
+  </script>
+</body>
+</html>
